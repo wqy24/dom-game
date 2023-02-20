@@ -6,6 +6,7 @@ function Character(imgs, x, y) {
   this.y = y;
   this.ani = []
   this.isAni = false;
+  this.shape = 0;
 }
 
 Character.prototype.animate = function (imgNos, aniTime, aniMode = "reset", force = false) {
@@ -23,14 +24,16 @@ Character.prototype.animate = function (imgNos, aniTime, aniMode = "reset", forc
     case "linear":
       for (i in imgNos) {
         this.ani.push(setTimeout(() => {
-          this.elem.attr();
+          this.elem.attr("src", this.imgs[this.imgNos[i]]);
         }, i * aniLen));
       }
       break;
     case "reset":
-      imgNos
+      imgNos.push(this.shape);
+      this.animate(imgNos, aniTime, "linear", force);
       break;
     case "reverse":
       break;
   }
+  this.shape = 
 }
